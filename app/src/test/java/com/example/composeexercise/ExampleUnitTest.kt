@@ -1,4 +1,4 @@
-package com.example.democompose
+package com.example.composeexercise
 
 import org.junit.Test
 
