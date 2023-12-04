@@ -25,12 +25,13 @@ fun MainMenu() {
     val navControllerParent = rememberNavController()
     NavHost(navController = navControllerParent, startDestination = "main") {
         composable("main") {
-            Menus{ menu ->
-                when(menu){
+            Menus { menu ->
+                when (menu) {
                     1 -> navControllerParent.navigate("exercise1")
                     2 -> navControllerParent.navigate("exercise2")
                     3 -> navControllerParent.navigate("exercise3")
                     4 -> navControllerParent.navigate("exercise4")
+                    5 -> navControllerParent.navigate("exercise5")
                     else -> navControllerParent.navigate("exercise1")
                 }
             }
@@ -47,6 +48,9 @@ fun MainMenu() {
         composable("exercise4") {
             MainScreen4()
         }
+        composable("exercise5") {
+            MainScreen5(navControllerParent = navControllerParent)
+        }
     }
 }
 
@@ -58,7 +62,8 @@ private fun Menus(callback: (Int) -> Unit) {
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            var (btnExercise1, btnExercise2, btnExercise3, btnExercise4) = createRefs()
+            var (btnExercise1, btnExercise2, btnExercise3, btnExercise4,
+                btnExercise5) = createRefs()
 
             Button(
                 modifier = Modifier
@@ -127,6 +132,23 @@ private fun Menus(callback: (Int) -> Unit) {
                     .height(50.dp),
                 onClick = { callback.invoke(4) }) {
                 Text(text = "Exercise 4")
+            }
+
+            Button(
+                modifier = Modifier
+                    .constrainAs(btnExercise5) {
+                        top.linkTo(btnExercise4.bottom, margin = 20.dp)
+                        linkTo(
+                            start = parent.start,
+                            end = parent.end,
+                            startMargin = 20.dp,
+                            endMargin = 20.dp
+                        )
+                        width = Dimension.fillToConstraints
+                    }
+                    .height(50.dp),
+                onClick = { callback.invoke(5) }) {
+                Text(text = "Exercise 5")
             }
         }
     }

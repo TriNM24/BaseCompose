@@ -173,7 +173,7 @@ fun MainScreen4(viewModelExercise4: Exercise4ViewModel = hiltViewModel()) {
                 },
                 onClick = {
                     focusManager.clearFocus()
-                    viewModelExercise4.addData(input)
+                    viewModelExercise4.addData(input.trim().replace("\\s+".toRegex()," "))
                     input = ""
                     isEnableButton = false
                 }) {
@@ -205,7 +205,11 @@ fun MainScreen4(viewModelExercise4: Exercise4ViewModel = hiltViewModel()) {
 }
 
 @Composable
-private fun buttonScroll(viewModelExercise4: Exercise4ViewModel,modifier: Modifier, scrollState: LazyListState) {
+private fun buttonScroll(
+    viewModelExercise4: Exercise4ViewModel,
+    modifier: Modifier,
+    scrollState: LazyListState
+) {
     val coroutineScope = rememberCoroutineScope()
     ConstraintLayout(modifier = modifier.fillMaxWidth()) {
         val (buttonScrollTop, buttonScrollBottom) = createRefs()
@@ -235,7 +239,11 @@ private fun buttonScroll(viewModelExercise4: Exercise4ViewModel,modifier: Modifi
 }
 
 @Composable
-private fun ListWord(viewModelExercise4: Exercise4ViewModel ,modifier: Modifier, scrollState: LazyListState) {
+private fun ListWord(
+    viewModelExercise4: Exercise4ViewModel,
+    modifier: Modifier,
+    scrollState: LazyListState
+) {
     ConstraintLayout(
         modifier = modifier
             .fillMaxWidth()
@@ -246,14 +254,14 @@ private fun ListWord(viewModelExercise4: Exercise4ViewModel ,modifier: Modifier,
             state = scrollState,
             content = {
                 items(viewModelExercise4.mData.size) {
-                    ItemView(viewModelExercise4,viewModelExercise4.mData[it])
+                    ItemView(viewModelExercise4, viewModelExercise4.mData[it])
                 }
             })
     }
 }
 
 @Composable
-private fun ItemView(viewModelExercise4: Exercise4ViewModel,data: String) {
+private fun ItemView(viewModelExercise4: Exercise4ViewModel, data: String) {
     ConstraintLayout(
         modifier = Modifier
             .background(colorResource(id = R.color.teal_700))

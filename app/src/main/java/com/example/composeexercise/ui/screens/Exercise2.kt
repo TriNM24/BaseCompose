@@ -45,7 +45,7 @@ import com.example.composeexercise.ui.viewmodels.Exercise2ViewModel
 
 @Composable
 fun MainScreen2(
-    navControlerParent: NavController,
+    navControllerParent: NavController?,
     exercise2ViewModel: Exercise2ViewModel = hiltViewModel()
 ) {
     val navController = rememberNavController()
@@ -73,7 +73,7 @@ fun MainScreen2(
             navController.popBackStack()
         } else {
             //Navigate back to parent screen
-            navControlerParent.popBackStack()
+            navControllerParent?.popBackStack()
         }
         Toast.makeText(context, "pressed back", Toast.LENGTH_SHORT).show()
     }
