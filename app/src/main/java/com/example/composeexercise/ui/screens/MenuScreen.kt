@@ -1,5 +1,6 @@
 package com.example.composeexercise.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,6 +23,7 @@ import com.example.composeexercise.ui.theme.ComposeExerciseTheme
 
 @Composable
 fun MainMenu() {
+    Log.d("testt","MainMenu")
     val navControllerParent = rememberNavController()
     NavHost(navController = navControllerParent, startDestination = "main") {
         composable("main") {
@@ -32,6 +34,7 @@ fun MainMenu() {
                     3 -> navControllerParent.navigate("exercise3")
                     4 -> navControllerParent.navigate("exercise4")
                     5 -> navControllerParent.navigate("exercise5")
+                    7 -> navControllerParent.navigate("exercise7")
                     else -> navControllerParent.navigate("exercise1")
                 }
             }
@@ -51,6 +54,9 @@ fun MainMenu() {
         composable("exercise5") {
             MainScreen5(navControllerParent = navControllerParent)
         }
+        composable("exercise7") {
+            MainScreen7(navControllerParent = navControllerParent)
+        }
     }
 }
 
@@ -63,7 +69,7 @@ private fun Menus(callback: (Int) -> Unit) {
                 .fillMaxWidth()
         ) {
             var (btnExercise1, btnExercise2, btnExercise3, btnExercise4,
-                btnExercise5) = createRefs()
+                btnExercise5, btnExercise7) = createRefs()
 
             Button(
                 modifier = Modifier
@@ -149,6 +155,23 @@ private fun Menus(callback: (Int) -> Unit) {
                     .height(50.dp),
                 onClick = { callback.invoke(5) }) {
                 Text(text = "Exercise 5")
+            }
+
+            Button(
+                modifier = Modifier
+                    .constrainAs(btnExercise7) {
+                        top.linkTo(btnExercise5.bottom, margin = 20.dp)
+                        linkTo(
+                            start = parent.start,
+                            end = parent.end,
+                            startMargin = 20.dp,
+                            endMargin = 20.dp
+                        )
+                        width = Dimension.fillToConstraints
+                    }
+                    .height(50.dp),
+                onClick = { callback.invoke(7) }) {
+                Text(text = "Exercise 7")
             }
         }
     }

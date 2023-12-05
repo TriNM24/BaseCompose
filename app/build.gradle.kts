@@ -42,6 +42,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
@@ -71,6 +72,9 @@ dependencies {
 
     // Compose Coil
     implementation ("io.coil-kt:coil-compose:2.4.0")
+
+    implementation ("com.google.accompanist:accompanist-permissions:0.32.0")
+    implementation ("androidx.compose.runtime:runtime-livedata:1.5.4")
 
     implementation("com.google.dagger:hilt-android:2.48.1")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
