@@ -87,6 +87,15 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    // Room
+    implementation ("androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+    // Optional - Kotlin Extensions and Coroutines support for Room
+    implementation ("androidx.room:room-ktx:2.6.1")
+
+    // LiveData (Flow to LiveData: asLiveData)
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
 }
 // Allow references to generated code
 kapt {

@@ -35,6 +35,7 @@ fun MainMenu() {
                     4 -> navControllerParent.navigate("exercise4")
                     5 -> navControllerParent.navigate("exercise5")
                     7 -> navControllerParent.navigate("exercise7")
+                    8 -> navControllerParent.navigate("exercise8")
                     else -> navControllerParent.navigate("exercise1")
                 }
             }
@@ -57,6 +58,9 @@ fun MainMenu() {
         composable("exercise7") {
             MainScreen7(navControllerParent = navControllerParent)
         }
+        composable("exercise8") {
+            MainScreen8(navControllerParent = navControllerParent)
+        }
     }
 }
 
@@ -69,7 +73,7 @@ private fun Menus(callback: (Int) -> Unit) {
                 .fillMaxWidth()
         ) {
             var (btnExercise1, btnExercise2, btnExercise3, btnExercise4,
-                btnExercise5, btnExercise7) = createRefs()
+                btnExercise5, btnExercise7, btnExercise8) = createRefs()
 
             Button(
                 modifier = Modifier
@@ -172,6 +176,23 @@ private fun Menus(callback: (Int) -> Unit) {
                     .height(50.dp),
                 onClick = { callback.invoke(7) }) {
                 Text(text = "Exercise 7")
+            }
+
+            Button(
+                modifier = Modifier
+                    .constrainAs(btnExercise8) {
+                        top.linkTo(btnExercise7.bottom, margin = 20.dp)
+                        linkTo(
+                            start = parent.start,
+                            end = parent.end,
+                            startMargin = 20.dp,
+                            endMargin = 20.dp
+                        )
+                        width = Dimension.fillToConstraints
+                    }
+                    .height(50.dp),
+                onClick = { callback.invoke(8) }) {
+                Text(text = "Exercise 8")
             }
         }
     }
